@@ -76,14 +76,14 @@
 	belt = /obj/item/storage/belt/rogue/leather/shalal
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	l_hand = /obj/item/rogueweapon/sword/sabre/shamshir
-	
+
 	H.merctype = 4
 
 /datum/advclass/mercenary/desert_rider/zeybek
 	name = "Desert Rider Zeybek"
 	tutorial = "Ranesheni 'Blade Dancers' are famed and feared the world over. Their expertise in blades both long and short is well known."
 	outfit = /datum/outfit/job/roguetown/mercenary/desert_rider_zeybek
-	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_STEELHEARTED)
+	traits_applied = list(TRAIT_DODGEEXPERT, TRAIT_STEELHEARTED,TRAIT_DUALWIELDER)
 	subclass_stats = list(
 		STATKEY_SPD = 3,
 		STATKEY_WIL = 2,
@@ -93,7 +93,7 @@
 /datum/outfit/job/roguetown/mercenary/desert_rider_zeybek/pre_equip(mob/living/carbon/human/H)
 	..()
 	to_chat(H, span_warning("Ranesheni 'Blade Dancers' are famed and feared the world over. Their expertise in blades both long and short is well known."))
-	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE) 
+	H.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/whipsflails, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
@@ -116,6 +116,11 @@
 	wrists = /obj/item/clothing/wrists/roguetown/splintarms
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex/raneshen
+	shoes = /obj/item/clothing/shoes/roguetown/shalal
+	belt = /obj/item/storage/belt/rogue/leather/shalal
+	beltl = /obj/item/rogueweapon/scabbard/sword
+	beltr = /obj/item/rogueweapon/scabbard/sword
+	l_hand = /obj/item/rogueweapon/sword/sabre/shamshir
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	backpack_contents = list(
 		/obj/item/roguekey/mercenary,
@@ -144,12 +149,6 @@
 			H.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
 			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
 			backl = /obj/item/quiver/arrows
-	shoes = /obj/item/clothing/shoes/roguetown/shalal
-	belt = /obj/item/storage/belt/rogue/leather/shalal
-	beltl = /obj/item/rogueweapon/scabbard/sword
-	beltr = /obj/item/rogueweapon/scabbard/sword
-	l_hand = /obj/item/rogueweapon/sword/sabre/shamshir
-	
 	H.merctype = 4
 
 /datum/advclass/mercenary/desert_rider/almah
@@ -211,7 +210,7 @@
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	beltr = /obj/item/rogueweapon/scabbard/sword
 	l_hand = /obj/item/rogueweapon/sword/sabre/shamshir
-	
+
 	H.merctype = 4
 
 
