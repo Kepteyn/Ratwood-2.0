@@ -3,34 +3,6 @@
 	roundend_category = "Werewolves"
 	antagpanel_category = "Werewolf"
 	job_rank = ROLE_WEREWOLF
-	var/list/inherent_traits = list(
-		TRAIT_IGNORESLOWDOWN,
-		TRAIT_IGNOREDAMAGESLOWDOWN,
-		TRAIT_NOPAIN, 
-		TRAIT_NOPAINSTUN, 
-		TRAIT_CRITICAL_RESISTANCE, 
-		TRAIT_NOFALLDAMAGE1, 
-		TRAIT_KNEESTINGER_IMMUNITY, 
-		TRAIT_SHOCKIMMUNE,
-		TRAIT_SILVER_WEAK,
-		TRAIT_STRENGTH_UNCAPPED,
-		TRAIT_LONGSTRIDER,
-		TRAIT_SPELLCOCKBLOCK,
-		TRAIT_PIERCEIMMUNE,
-		TRAIT_HARDDISMEMBER,
-		TRAIT_NOSTINK,
-		TRAIT_NASTY_EATER,
-		TRAIT_ORGAN_EATER,
-		TRAIT_TOXIMMUNE,
-		TRAIT_BREADY,
-		TRAIT_STEELHEARTED,
-		TRAIT_BASHDOORS,
-		TRAIT_INFINITE_STAMINA,
-		TRAIT_ZJUMP,
-		TRAIT_NOSLEEP,
-		TRAIT_GRABIMMUNE,
-		TRAIT_STRONGBITE
-	)
 	confess_lines = list(
 		"THE BEAST INSIDE ME!",
 		"BEWARE THE BEAST!",
@@ -65,7 +37,7 @@
 	owner.special_role = name
 	if(increase_votepwr)
 		forge_werewolf_objectives()
-	
+
 	wolfname = "[pick(GLOB.wolf_prefixes)] [pick(GLOB.wolf_suffixes)]"
 	return ..()
 
