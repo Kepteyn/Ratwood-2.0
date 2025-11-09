@@ -1000,8 +1000,6 @@
 			. += "<a href='?src=[REF(src)];task=assess;'>Assess</a>"
 
 	if((!obscure_name || client?.prefs.masked_examine) && (flavortext || headshot_link || ooc_notes))
-		if ((valid_headshot_link(src, headshot_link, TRUE)) && (user.client?.prefs.chatheadshot))
-			. += span_info("<img src=[headshot_link] width=120 height=120/>")
 		. += "<a href='?src=[REF(src)];task=view_headshot;'>Examine closer</a>"
 
 	if(lip_style)
