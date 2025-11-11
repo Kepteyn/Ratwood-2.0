@@ -30,7 +30,7 @@
 			span_notice("[user] milks [p_themselves()] into \the [container]."),
 			span_notice("I milk [(src == user) ? "myself" : src] into \the [container].")
 		)
-			user.sexcon.adjust_arousal(2)
-			try_milking(user, container)
+		user.sexcon.adjust_arousal(2)
+		try_milking(user, container)
 	else
 		to_chat(user, span_warning("[container] is full."))
