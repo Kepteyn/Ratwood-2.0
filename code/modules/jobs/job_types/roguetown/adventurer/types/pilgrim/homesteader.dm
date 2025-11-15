@@ -237,11 +237,11 @@
 			var/utility_name = input(H, "Choose a Utility Apparatus or Knowledge item [i]/5.", "Utility & Knowledge") as anything in utility_knowledge_items
 			if(utility_name)
 				var/item_path = utility_knowledge_items[utility_name]
-				if(istype(item_path, /obj/effect/proc_holder/spell))
-					// Handle spells
+				if(ispath(item_path, /obj/effect/proc_holder/spell))
+					// Handle spells - add directly to mind
 					H.AddSpell(new item_path)
 				else
-					// Handle regular items
+					// Handle regular items - add to special_items
 					H.mind.special_items[utility_name] = item_path
 				if(utility_name in utility_knowledge_items)
 					utility_knowledge_items -= utility_name
