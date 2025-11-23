@@ -260,7 +260,9 @@
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 
 #define COMSIG_MOB_EJACULATED "comsig_mob_ejaculated"				//from base of /datum/sex_controller/proc/ejaculate()
+#define COMSIG_MOB_DAWNED "comsig_mob_dawned"				///mob/living/carbon/human/update_tod(todd)
 #define COMSIG_MOB_DAYED "comsig_mob_dayed"				///mob/living/carbon/human/update_tod(todd)
+#define COMSIG_MOB_DUSKED "comsig_mob_dusked"				///mob/living/carbon/human/update_tod(todd)
 #define COMSIG_MOB_NIGHTED "comsig_mob_nighted"				///mob/living/carbon/human/update_tod(todd)
 
 #define COMSIG_MOB_SAY "mob_say" // from /mob/living/say(): ()

@@ -45,8 +45,14 @@
 		if("on move")
 			RegisterSignal(M, COMSIG_MOVABLE_MOVED, PROC_REF(on_signal_trigger))
 			signals += COMSIG_MOVABLE_MOVED
+		if("on dawn")
+			RegisterSignal(M, COMSIG_MOB_DAWNED, PROC_REF(on_signal_trigger))
+			signals += COMSIG_MOB_DAYED
 		if("on day")
 			RegisterSignal(M, COMSIG_MOB_DAYED, PROC_REF(on_signal_trigger))
+			signals += COMSIG_MOB_DAYED
+		if("on dusk")
+			RegisterSignal(M, COMSIG_MOB_DUSKED, PROC_REF(on_signal_trigger))
 			signals += COMSIG_MOB_DAYED
 		if("on night")
 			RegisterSignal(M, COMSIG_MOB_NIGHTED, PROC_REF(on_signal_trigger))
@@ -103,6 +109,7 @@
 			if(!debuff_id || !istype(debuff_id, /datum/status_effect))
 				return
 			L.apply_status_effect(debuff_id)
+			//notify_player_of_effect(L, effect, TRUE, debuff_id)
 		if("remove trait")
 			var/trait_id = effect_args["trait"]
 			if(!trait_id)
@@ -115,20 +122,47 @@
 			ADD_TRAIT(L, trait_id, TRAIT_GENERIC)
 		if("add 2u reagent")
 			var/reagent_type = effect_args["reagent_type"]
+
+			if(istext(reagent_type))
+				reagent_type = text2path(reagent_type)
+
+			if(!reagent_type)
+				return
+
 			var/mob/living/carbon/M = L
 			var/datum/reagents/reagents = new()
 			reagents.add_reagent(reagent_type, 2)
 			reagents.trans_to(M, 2, transfered_by = M, method = INGEST)
 		if("add arousal")
 			L.sexcon.arousal += 5
-		/*if("shrink sex organs")
-			if(istype(L, /mob/living/carbon/human))	
-				var/mob/living/carbon/human/H = L
-				H.adjust_sexual_organs(-1)
+		if("shrink sex organs")
+			var/obj/item/organ/penis/penis = L.getorganslot(ORGAN_SLOT_PENIS)
+			var/obj/item/organ/testicles/testicles = L.getorganslot(ORGAN_SLOT_TESTICLES)
+			var/obj/item/organ/breasts/breasts = L.getorganslot(ORGAN_SLOT_BREASTS)
+			if(penis)
+				if(penis.penis_size > MIN_PENIS_SIZE)
+					penis.penis_size--
+			if(testicles)
+				if(testicles.ball_size > MIN_TESTICLES_SIZE)
+					testicles.ball_size--
+			if(breasts)
+				if(breasts.breast_size > MIN_BREASTS_SIZE )
+					breasts.breast_size--
+			L.update_body()
 		if("enlarge sex organs")
-			if(istype(L, /mob/living/carbon/human))	
-				var/mob/living/carbon/human/H = L
-				H.adjust_sexual_organs(1)*/
+			var/obj/item/organ/penis/penis = L.getorganslot(ORGAN_SLOT_PENIS)
+			var/obj/item/organ/testicles/testicles = L.getorganslot(ORGAN_SLOT_TESTICLES)
+			var/obj/item/organ/breasts/breasts = L.getorganslot(ORGAN_SLOT_BREASTS)
+			if(penis)
+				if(penis.penis_size < MAX_PENIS_SIZE)
+					penis.penis_size++
+			if(testicles)
+				if(testicles.ball_size < MAX_TESTICLES_SIZE)
+					testicles.ball_size++
+			if(breasts)
+				if(breasts.breast_size < MAX_BREASTS_SIZE )
+					breasts.breast_size++
+			L.update_body()
 		if("nauseate")
 			var/mob/living/carbon/M = L
 			M.add_nausea(4)
@@ -478,7 +512,9 @@
 		//"on climb",
 		//"on swim",
 		"on move",
+		"on dawn",
 		"on day",
+		"on dusk",
 		"on night"
 	)
 
@@ -510,8 +546,8 @@
 		"add trait",
 		"add 2u reagent",
 		"add arousal",
-		//"shrink sex organs",
-		//"enlarge sex organs",
+		"shrink sex organs",
+		"enlarge sex organs",
 		"nauseate",
 		"clothesplosion",
 		"slip",
@@ -608,7 +644,7 @@
 		src,
 		"Duration (REAL WORLD DAYS):",
 		"Duration",
-		1
+		3
 	) as null|num
 
 	if(!duration || duration <= 0)
@@ -619,7 +655,7 @@
 		src,
 		"Cooldown between activations (seconds):",
 		"Cooldown",
-		45
+		1
 	) as null|num
 
 	if(cooldown < 0)
@@ -630,7 +666,7 @@
 		src,
 		"Reason for curse (admin note):",
 		"Reason",
-		"None"
+		"Change me or I determine you shitmin"
 	) as null|text
 
 	// ---- Generate name ----
