@@ -117,6 +117,10 @@
 				arg = FALSE
 			else
 				ADD_TRAIT(L, trait_id, TRAIT_GENERIC)
+		if("scream")
+			L.emote("scream", forced = TRUE)
+		if("cry")
+			L.emote("cry", forced = TRUE)
 		if("add reagent")
 			var/reagent_type = effect_args["reagent_type"]
 			var/amount = effect_args["amount"]
@@ -134,6 +138,8 @@
 		if("add arousal")
 			var/amount = effect_args["amount"]
 			L.sexcon.arousal += amount
+		if("orgasm")
+			L.sexcon.arousal += 999
 		if("shrink sex organs")
 			spawn(0)
 				var/obj/item/organ/penis/penis = L.getorganslot(ORGAN_SLOT_PENIS)
@@ -231,6 +237,14 @@
 		if("add fire stack")
 			L.adjust_fire_stacks(rand(1,6))
 			L.ignite_mob()
+		if("cbt")
+			if(!ishuman(L))
+				return
+			var/mob/living/carbon/human/humie = L
+			var/obj/item/bodypart/affecting = humie.get_bodypart(BODY_ZONE_CHEST)
+			if(!affecting)
+				return
+			affecting.add_wound(/datum/wound/cbt/permanent)
 		/*if("easy ambush")
 			var/mob/living/simple_animal/M = effect_args["mob_type"]
 			if(!M || !istype(M, /mob/living/simple_animal))
@@ -415,10 +429,16 @@
 			effect_text_self = "something familiar fades from you";effect_text_other = "a familiar quality disappears from them"
 		if("add trait")
 			effect_text_self = "a new aspect awakens within you";effect_text_other = "something new takes shape in them"
+		if("scream")
+			effect_text_self = "you let out a scream";effect_text_other = "they begin to wail"
+		if("cry")
+			effect_text_self = "tears drip from your eyes";effect_text_other = "salty tears baste their cheeks"
 		if("add reagent")
 			effect_text_self = "your blood feels altered";effect_text_other = "a strange tint touches their veins"
 		if("add arousal")
 			effect_text_self = "heat eminates from your loins";effect_text_other = "their breath quickens and their cheeks flush"
+		if("orgasm")
+			effect_text_self = "a climax is set upon you";effect_text_other = "they look wracked with pleasure"
 		if("shrink sex organs")
 			effect_text_self = "your sex organs seem to retract";effect_text_other = "they look less confident"
 		if("enlarge sex organs")
@@ -426,13 +446,15 @@
 		if("add nausea")
 			effect_text_self = "your stomach twists";effect_text_other = "their face pales and their balance falters"
 		if("clothesplosion")
-			effect_text_self = "your clothes fly apart";effect_text_other = "fabric bursts away from them"
+			effect_text_self = "your equipment flies away";effect_text_other = "equipment bursts away from them"
 		if("slip")
 			effect_text_self = "your footing vanishes";effect_text_other = "they stumble and fall"
 		if("shock")
 			effect_text_self = "a jolt tears through you";effect_text_other = "their body convulses sharply"
 		if("add fire stack")
 			effect_text_self = "flames lick your skin";effect_text_other = "fire catches against them"
+		if("cbt")
+			effect_text_self = "your genitals wrench and twist out of place";effect_text_other = "they look to be in agonizing pain"
 		if("explode")
 			effect_text_self = "you detonate violently";effect_text_other = "they erupt in a sudden blast"
 		if("shapeshift")
@@ -807,8 +829,11 @@
 		"buff or debuff",
 		"remove trait",
 		"add trait",
+		"scream",
+		"cry",
 		"add reagent",
 		"add arousal",
+		"orgasm",
 		"shrink sex organs",
 		"enlarge sex organs",
 		"add nausea",
@@ -820,7 +845,7 @@
 		//"make werewolf",
 		"shock",
 		"add fire stack",
-		//"cbt",
+		"cbt",
 		//"easy ambush",
 		//"difficult ambush",
 		"explode",
