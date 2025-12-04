@@ -105,3 +105,7 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	max_integrity = 300
 	repair_time = 20 SECONDS
+
+
+/obj/item/clothing/suit/roguetown/armor/regenerating/skin/loadout
+	armor = ARMOR_PADDED_BAD

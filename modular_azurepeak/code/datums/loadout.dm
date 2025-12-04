@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(loadout_items)
 //TOOLS
 
 /datum/loadout_item/bauernwehr
-	name = "Bauernwehr (-3 TRI)"
+	name = "Bauernwehr"
 	path = /obj/item/rogueweapon/huntingknife/throwingknife/bauernwehr
 	triumph_cost = 3
 
@@ -625,7 +625,606 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Zizo Cross"
 	path = /obj/item/clothing/neck/roguetown/zcross/iron
 
+// MASKS
+/datum/loadout_item/skullmask
+	name = "Skull Mask"
+	path = /obj/item/clothing/mask/rogue/skullmask
+
+/datum/loadout_item/physician_mask
+	name = "Physician Mask"
+	path = /obj/item/clothing/mask/rogue/physician
+
+/datum/loadout_item/kitsune_mask
+	name = "Old Kitsune Mask"
+	path = /obj/item/clothing/mask/rogue/facemask/yoruku_kitsune/loadout
+
+/datum/loadout_item/oni_mask
+	name = "Old Oni Mask"
+	path = /obj/item/clothing/mask/rogue/facemask/yoruku_oni/loadout
+
+/datum/loadout_item/naledi_lordmask
+	name = "Old Naledi Mask"
+	path = /obj/item/clothing/mask/rogue/lordmask/naledi/loadout
+
+// CLOAKS
+/datum/loadout_item/darkcloak
+	name = "Dark Cloak"
+	path = /obj/item/clothing/cloak/darkcloak
+
+/datum/loadout_item/apron
+	name = "Apron"
+	path = /obj/item/clothing/cloak/apron
+
+/datum/loadout_item/apron_blacksmith
+	name = "Blacksmith Apron"
+	path = /obj/item/clothing/cloak/apron/blacksmith
+
+/datum/loadout_item/apron_waist
+	name = "Waist Apron"
+	path = /obj/item/clothing/cloak/apron/waist
+
+/datum/loadout_item/apron_cook
+	name = "Cook's Apron"
+	path = /obj/item/clothing/cloak/apron/cook
+
+/datum/loadout_item/black_cloak
+	name = "Black Cloak"
+	path = /obj/item/clothing/cloak/black_cloak
+
+/datum/loadout_item/tribal_cloak
+	name = "Tribal Cloak"
+	path = /obj/item/clothing/cloak/tribal
+
+/datum/loadout_item/battlenun_cloak
+	name = "Battle Nun Cloak"
+	path = /obj/item/clothing/cloak/battlenun
+
+/datum/loadout_item/hierophant_cloak
+	name = "Hierophant Cloak"
+	path = /obj/item/clothing/cloak/hierophant
+
+/datum/loadout_item/forrester_snow
+	name = "Snow Forrester Cloak"
+	path = /obj/item/clothing/cloak/forrestercloak/snow
+
+/datum/loadout_item/eastcloak1
+	name = "Eastern Cloak"
+	path = /obj/item/clothing/cloak/eastcloak1
+
+/datum/loadout_item/kazengun_cloak
+	name = "Kazengun Cloak"
+	path = /obj/item/clothing/cloak/kazengun
+
+// SHOES
+/datum/loadout_item/sandals
+	name = "Sandals"
+	path = /obj/item/clothing/shoes/roguetown/sandals
+
+// NECK/GORGETS
+/datum/loadout_item/forlorn_collar
+	name = "Old Forlorn Collar"
+	path = /obj/item/clothing/neck/roguetown/gorget/forlorncollar/loadout
+
+// EASTERN CLOTHING
+/datum/loadout_item/captain_robe
+	name = "Eastern Flowery Robe"
+	path = /obj/item/clothing/suit/roguetown/armor/basiceast/captainrobe/loadout
+
+/datum/loadout_item/mentor_suit
+	name = "Eastern Mentor Suit"
+	path = /obj/item/clothing/suit/roguetown/armor/basiceast/mentorsuit/loadout
+
+/datum/loadout_item/crafteast
+	name = "Eastern Craft Robe"
+	path = /obj/item/clothing/suit/roguetown/armor/basiceast/crafteast/loadout
+
+// HEADWEAR
+/datum/loadout_item/nochood
+	name = "Noc Hood"
+	path = /obj/item/clothing/head/roguetown/nochood
+
+/datum/loadout_item/dendormask
+	name = "Dendor Mask"
+	path = /obj/item/clothing/head/roguetown/dendormask
+
+/datum/loadout_item/necrahood
+	name = "Necra Hood"
+	path = /obj/item/clothing/head/roguetown/necrahood
+
+/datum/loadout_item/physhood
+	name = "Pestra Hood"
+	path = /obj/item/clothing/head/roguetown/roguehood/phys
+
+// ROBES - ASTRATA
+
+/datum/loadout_item/eoramask
+	name = "Eora Mask"
+	path = /obj/item/clothing/head/roguetown/eoramask
+
+/datum/loadout_item/antlerhood
+	name = "Antler Hood"
+	path = /obj/item/clothing/head/roguetown/antlerhood
+
+/datum/loadout_item/briarthorns
+	name = "Briar Thorns Headpiece"
+	path = /obj/item/clothing/head/roguetown/padded/briarthorns
+
+/datum/loadout_item/mentorhat
+	name = "conical mentor hat"
+	path = /obj/item/clothing/head/roguetown/mentorhat/loadout
+
+// ROBES - ASTRATA
+/datum/loadout_item/robe_astrata
+	name = "Sun Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
+
+/datum/loadout_item/hood_astrata
+	name = "Sun Hood"
+	path = /obj/item/clothing/head/roguetown/roguehood/astrata
+
+// ROBES - NOC
+/datum/loadout_item/robe_noc
+	name = "Moon Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/noc
+
+// ROBES - DENDOR
+/datum/loadout_item/robe_dendor
+	name = "Briar Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
+
+// ROBES - ABYSSOR
+/datum/loadout_item/robe_abyssor
+	name = "Depths Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/abyssor
+
+/datum/loadout_item/hood_abyssor
+	name = "Depths Hood"
+	path = /obj/item/clothing/head/roguetown/roguehood/abyssor
+
+// ROBES - NECRA
+/datum/loadout_item/robe_necra
+	name = "Mourning Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/necra
+
+// ROBES - RAVOX
+/datum/loadout_item/hood_ravox
+	name = "Ravox Tabard Gorget"
+	path = /obj/item/clothing/head/roguetown/roguehood/ravoxgorget
+
+// ROBES - EORA
+/datum/loadout_item/robe_eora
+	name = "Eoran Robe"
+	path = /obj/item/clothing/suit/roguetown/shirt/robe/eora
+
+//==========================
+// TRIUMPH LOADOUT ITEMS
+//==========================
+
+//─────────────────────────────────────────────────────────────
+// 2 TRIUMPH - Mundane Tools & Basic Items
+//─────────────────────────────────────────────────────────────
+
+// TOOLS & OBJECTS
+/datum/loadout_item/tri_rope
+	name = "Rope"
+	path = /obj/item/rope
+	triumph_cost = 2
+
+/datum/loadout_item/tri_hammer
+	name = "Hammer"
+	path = /obj/item/rogueweapon/hammer
+	triumph_cost = 2
+
+/datum/loadout_item/tri_pickaxe
+	name = "Pick"
+	path = /obj/item/rogueweapon/pick
+	triumph_cost = 2
+
+/datum/loadout_item/tri_shovel
+	name = "Shovel"
+	path = /obj/item/rogueweapon/shovel
+	triumph_cost = 2
+
+/datum/loadout_item/tri_sickle
+	name = "Sickle"
+	path = /obj/item/rogueweapon/sickle
+	triumph_cost = 2
+
+/datum/loadout_item/tri_hoe
+	name = "Hoe"
+	path = /obj/item/rogueweapon/hoe
+	triumph_cost = 2
+
+/datum/loadout_item/tri_torch
+	name = "Torch"
+	path = /obj/item/flashlight/flare/torch
+	triumph_cost = 2
+
+// SHIELDS
+/datum/loadout_item/tri_wooden_shield
+	name = "Wooden Shield"
+	path = /obj/item/rogueweapon/shield/wood
+	triumph_cost = 2
+
+// BLUNT WEAPONS
+/datum/loadout_item/tri_woodclub
+	name = "Wooden Club"
+	path = /obj/item/rogueweapon/mace/woodclub
+	triumph_cost = 2
+
+// AXES
+/datum/loadout_item/tri_bone_axe
+	name = "Bone Axe"
+	path = /obj/item/rogueweapon/stoneaxe/boneaxe
+	triumph_cost = 2
+
+// SWORDS
+/datum/loadout_item/tri_stone_sword
+	name = "Stone Sword"
+	path = /obj/item/rogueweapon/sword/stone
+	triumph_cost = 2
+
+// DAGGERS & KNIVES
+/datum/loadout_item/tri_stone_knife
+	name = "Stone Knife"
+	path = /obj/item/rogueweapon/huntingknife/stoneknife
+	triumph_cost = 2
+
+// POLEARMS & SPEARS
+/datum/loadout_item/tri_stone_spear
+	name = "Stone Spear"
+	path = /obj/item/rogueweapon/spear/stone
+	triumph_cost = 2
+
+/datum/loadout_item/tri_bone_spear
+	name = "Bone Spear"
+	path = /obj/item/rogueweapon/spear/bonespear
+	triumph_cost = 2
+
+// ARMOR
+/datum/loadout_item/tri_leather_armor
+	name = "Leather Armor"
+	path = /obj/item/clothing/suit/roguetown/armor/leather
+	triumph_cost = 2
+
+/datum/loadout_item/tri_leather_gloves
+	name = "Leather Gloves"
+	path = /obj/item/clothing/gloves/roguetown/leather
+	triumph_cost = 2
+
+/datum/loadout_item/tri_leather_bracers
+	name = "Leather Bracers"
+	path = /obj/item/clothing/wrists/roguetown/bracers/leather
+	triumph_cost = 2
+
+//─────────────────────────────────────────────────────────────
+// 3 TRIUMPH - Wooden Polearms & Noble Clothing
+//─────────────────────────────────────────────────────────────
+
+// POLEARMS & SPEARS
+/datum/loadout_item/tri_quarterstaff
+	name = "Quarterstaff"
+	path = /obj/item/rogueweapon/woodstaff/quarterstaff
+	triumph_cost = 3
+
+/datum/loadout_item/tri_woodstaff
+	name = "Woodstaff"
+	path = /obj/item/rogueweapon/woodstaff
+	triumph_cost = 3
+
+/datum/loadout_item/tri_scythe
+	name = "Peasant Scythe"
+	path = /obj/item/rogueweapon/scythe
+	triumph_cost = 3
+
+// CLOTHING - DRESSES & ROBES
+/datum/loadout_item/tri_princess_dress
+	name = "Princess Dress"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
+	triumph_cost = 3
+
+/datum/loadout_item/tri_royal_dress
+	name = "Royal Dress"
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/royal
+	triumph_cost = 3
+
+/datum/loadout_item/tri_royal_sleeves
+	name = "Royal Sleeves"
+	path = /obj/item/clothing/wrists/roguetown/royalsleeves
+	triumph_cost = 3
+
+/datum/loadout_item/tri_lady_cloak
+	name = "Lady's Cloak"
+	path = /obj/item/clothing/cloak/lordcloak/ladycloak
+	triumph_cost = 3
+
+// CLOTHING - HEADWEAR
+/datum/loadout_item/tri_circlet
+	name = "Circlet"
+	path = /obj/item/clothing/head/roguetown/circlet/loadout
+	triumph_cost = 3
+
+/datum/loadout_item/tri_paddedcap
+	name = "Padded Cap"
+	path = /obj/item/clothing/head/roguetown/paddedcap
+	triumph_cost = 3
+
+/datum/loadout_item/tri_volfhelm
+	name = "Volf Helm"
+	path = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
+	triumph_cost = 3
+
+/datum/loadout_item/tri_saiga
+	name = "Saiga Helm"
+	path = /obj/item/clothing/head/roguetown/helmet/leather/saiga
+	triumph_cost = 3
+
+// CLOTHING - JEWELRY & ACCESSORIES
+/datum/loadout_item/tri_noble_amulet
+	name = "Noble Amulet"
+	path = /obj/item/clothing/neck/roguetown/ornateamulet/noble
+	triumph_cost = 3
+
+/datum/loadout_item/tri_shalal_neck
+	name = "Shalal Scarf"
+	path = /obj/item/clothing/neck/roguetown/shalal
+	triumph_cost = 3
+
+/datum/loadout_item/tri_shell_bracelet
+	name = "Shell Bracelet"
+	path = /obj/item/clothing/neck/roguetown/psicross/shell/bracelet
+	triumph_cost = 3
+
+/datum/loadout_item/tri_shell_necklace
+	name = "Shell Necklace"
+	path = /obj/item/clothing/neck/roguetown/psicross/shell
+	triumph_cost = 3
+
+// CLOTHING - ARMOR
+/datum/loadout_item/tri_regen_skin
+	name = "Regenerating Skin"
+	path = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/loadout
+	triumph_cost = 3
+
+//─────────────────────────────────────────────────────────────
+// 4 TRIUMPH - Copper/Bronze Tier
+//─────────────────────────────────────────────────────────────
+
+// BLUNT WEAPONS
+/datum/loadout_item/tri_cudgel
+	name = "Cudgel"
+	path = /obj/item/rogueweapon/mace/cudgel
+	triumph_cost = 4
+
+/datum/loadout_item/tri_mace_bronze
+	name = "Bronze Mace"
+	path = /obj/item/rogueweapon/mace/bronze
+	triumph_cost = 4
+
+/datum/loadout_item/tri_bronze_knuckles
+	name = "Bronze Knuckles"
+	path = /obj/item/rogueweapon/knuckles/bronzeknuckles
+	triumph_cost = 4
+
+// AXES
+/datum/loadout_item/tri_hatchet_copper
+	name = "Copper Hatchet"
+	path = /obj/item/rogueweapon/stoneaxe/handaxe/copper
+	triumph_cost = 4
+
+/datum/loadout_item/tri_bronze_axe
+	name = "Bronze Axe"
+	path = /obj/item/rogueweapon/stoneaxe/woodcut/bronze
+	triumph_cost = 4
+
+// SWORDS
+/datum/loadout_item/tri_gladius
+	name = "Gladius"
+	path = /obj/item/rogueweapon/sword/short/gladius
+	triumph_cost = 4
+
+/datum/loadout_item/tri_messer_copper
+	name = "Copper Messer"
+	path = /obj/item/rogueweapon/sword/short/messer/copper
+	triumph_cost = 4
+
+/datum/loadout_item/tri_bronze_sword
+	name = "Bronze Sword"
+	path = /obj/item/rogueweapon/sword/bronze
+	triumph_cost = 4
+
+// DAGGERS & KNIVES
+/datum/loadout_item/tri_huntingknife_copper
+	name = "Copper Hunting Knife"
+	path = /obj/item/rogueweapon/huntingknife/copper
+	triumph_cost = 4
+
+/datum/loadout_item/tri_huntingknife_bronze
+	name = "Bronze Hunting Knife"
+	path = /obj/item/rogueweapon/huntingknife/bronze
+	triumph_cost = 4
+
+/datum/loadout_item/tri_bronze_katar
+	name = "Bronze Katar"
+	path = /obj/item/rogueweapon/katar/bronze
+	triumph_cost = 4
+
+// POLEARMS & SPEARS
+/datum/loadout_item/tri_copper_spear
+	name = "Copper Spear"
+	path = /obj/item/rogueweapon/spear/stone/copper
+	triumph_cost = 4
+
+/datum/loadout_item/tri_bronze_spear
+	name = "Bronze Spear"
+	path = /obj/item/rogueweapon/spear/bronze
+	triumph_cost = 4
+
+// WHIPS
+/datum/loadout_item/tri_whip
+	name = "Whip"
+	path = /obj/item/rogueweapon/whip
+	triumph_cost = 4
+
+// ARMOR
+/datum/loadout_item/tri_studded_leather
+	name = "Studded Leather Armor"
+	path = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	triumph_cost = 4
+
+//─────────────────────────────────────────────────────────────
+// 6 TRIUMPH - Simple Iron Weapons
+//─────────────────────────────────────────────────────────────
+
+// BLUNT WEAPONS
+/datum/loadout_item/tri_mace_iron
+	name = "Iron Mace"
+	path = /obj/item/rogueweapon/mace
+	triumph_cost = 6
+
+/datum/loadout_item/tri_flail_iron
+	name = "Iron Flail"
+	path = /obj/item/rogueweapon/flail
+	triumph_cost = 6
+
+// AXES
+/datum/loadout_item/tri_axe_iron
+	name = "Iron Axe"
+	path = /obj/item/rogueweapon/stoneaxe/woodcut
+	triumph_cost = 6
+
+// SWORDS
+/datum/loadout_item/tri_sword_short_iron
+	name = "Iron Shortsword"
+	path = /obj/item/rogueweapon/sword/short/iron
+	triumph_cost = 6
+
+/datum/loadout_item/tri_sword_iron
+	name = "Iron Arming Sword"
+	path = /obj/item/rogueweapon/sword/iron
+	triumph_cost = 6
+
+/datum/loadout_item/tri_messer_iron
+	name = "Iron Messer"
+	path = /obj/item/rogueweapon/sword/short/messer/iron
+	triumph_cost = 6
+
+// DAGGERS & KNIVES
+/datum/loadout_item/tri_huntingknife_iron
+	name = "Iron Hunting Knife"
+	path = /obj/item/rogueweapon/huntingknife
+	triumph_cost = 6
+
+/datum/loadout_item/tri_iron_dagger
+	name = "Iron Dagger"
+	path = /obj/item/rogueweapon/huntingknife/idagger
+	triumph_cost = 6
+
+// POLEARMS & SPEARS
+/datum/loadout_item/tri_spear_iron
+	name = "Iron Spear"
+	path = /obj/item/rogueweapon/spear
+	triumph_cost = 6
+
+// ARMOR
+/datum/loadout_item/tri_chainmail_iron
+	name = "Iron Chainmail"
+	path = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
+	triumph_cost = 6
+
+/datum/loadout_item/tri_haubergeon_iron
+	name = "Iron Haubergeon"
+	path = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/iron
+	triumph_cost = 6
+
+/datum/loadout_item/tri_chaingloves
+	name = "Iron Chain Gauntlets"
+	path = /obj/item/clothing/gloves/roguetown/chain/iron
+	triumph_cost = 6
+
+/datum/loadout_item/tri_chaincoif
+	name = "Iron Chain Coif"
+	path = /obj/item/clothing/neck/roguetown/chaincoif/iron
+	triumph_cost = 6
+
+//─────────────────────────────────────────────────────────────
+// 9 TRIUMPH - Militia/Improvised Weapons & Special Daggers
+//─────────────────────────────────────────────────────────────
+
+// BLUNT WEAPONS
+/datum/loadout_item/tri_militia_goedendag
+	name = "Militia Goedendag"
+	path = /obj/item/rogueweapon/woodstaff/militia
+	triumph_cost = 9
+
+/datum/loadout_item/tri_militia_warpick
+	name = "Militia Warpick"
+	path = /obj/item/rogueweapon/pick/militia
+	triumph_cost = 9
+
+// AXES
+/datum/loadout_item/tri_militia_waraxe
+	name = "Militia War Axe"
+	path = /obj/item/rogueweapon/greataxe/militia
+	triumph_cost = 9
+
+// DAGGERS & KNIVES
+/datum/loadout_item/tri_iron_dagger
+	name = "Iron Dagger"
+	path = /obj/item/rogueweapon/huntingknife/idagger
+	triumph_cost = 9
+
+/datum/loadout_item/tri_navaja
+	name = "Navaja"
+	path = /obj/item/rogueweapon/huntingknife/idagger/navaja
+	triumph_cost = 9
+
+// POLEARMS & SPEARS
+/datum/loadout_item/tri_militia_spear
+	name = "Militia Spear"
+	path = /obj/item/rogueweapon/spear/militia
+	triumph_cost = 9
+
+//─────────────────────────────────────────────────────────────
+// 10 TRIUMPH - Lord's Cloak
+//─────────────────────────────────────────────────────────────
+
+// CLOTHING - CLOAKS
+/datum/loadout_item/tri_lord_cloak
+	name = "Lord's Cloak"
+	path = /obj/item/clothing/cloak/lordcloak
+	triumph_cost = 10
+
+//─────────────────────────────────────────────────────────────
+// 11 TRIUMPH - Bronze Trident
+//─────────────────────────────────────────────────────────────
+
+// POLEARMS & SPEARS
+/datum/loadout_item/tri_bronze_trident
+	name = "Bronze Trident"
+	path = /obj/item/rogueweapon/spear/trident
+	triumph_cost = 11
+
+//─────────────────────────────────────────────────────────────
+// 15 TRIUMPH - Greatweapons
+//─────────────────────────────────────────────────────────────
+
+// AXES
+/datum/loadout_item/tri_greataxe
+	name = "Iron Greataxe"
+	path = /obj/item/rogueweapon/greataxe
+	triumph_cost = 15
+
+// SWORDS
+/datum/loadout_item/tri_greatsword
+	name = "Iron Greatsword"
+	path = /obj/item/rogueweapon/greatsword/iron
+	triumph_cost = 15
+
+
+//==========================
 //Donator Section
+//==========================
 //All these items are stored in the donator_fluff.dm in the azure modular folder for simplicity.
 //All should be subtypes of existing weapons/clothes/armor/gear, whatever, to avoid balance issues I guess. Idk, I'm not your boss.
 

@@ -933,7 +933,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	personal_objectives.Cut()
 
 /proc/handle_special_items_retrieval(mob/user, atom/host_object)
-	// Attempts to retrieve an item from a player's stash, and applies any base colors, where preferable.
+	// Attempts to retrieve an item from a player's stash, and applies any base colors, custom names, and descriptions.
 	if(user.mind && isliving(user))
 		if(user.mind.special_items && user.mind.special_items.len)
 			var/item = input(user, "What will I take?", "STASH") as null|anything in user.mind.special_items
@@ -943,11 +943,31 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 						var/path2item = user.mind.special_items[item]
 						user.mind.special_items -= item
 						var/obj/item/I = new path2item(user.loc)
+						// Apply custom color if set (for clothing and weapons) - BEFORE putting in hands
+						var/dye = user.client?.prefs.resolve_loadout_to_color(path2item)
+						if (dye)
+							I.add_atom_colour(dye, FIXED_COLOUR_PRIORITY)
+							I.update_icon()
+						
+						// Apply custom name if set
+						var/custom_name = user.client?.prefs.resolve_loadout_to_name(path2item)
+						if (custom_name)
+							I.original_name = I.name // Store original name before renaming
+							I.name = custom_name
+							// Log to game log
+							log_game("[key_name(user)] retrieved loadout item with custom name: '[custom_name]' (original: '[I.original_name]')")
+						// Apply custom description if set
+						var/custom_desc = user.client?.prefs.resolve_loadout_to_desc(path2item)
+						if (custom_desc)
+							I.desc = custom_desc
+						
 						user.put_in_hands(I)
-						if (istype(I, /obj/item/clothing)) // commit any pref dyes to our item if it is clothing and we have them available
-							var/dye = user.client?.prefs.resolve_loadout_to_color(path2item)
-							if (dye)
-								I.add_atom_colour(dye, FIXED_COLOUR_PRIORITY)
+						
+						// Force update mob appearance to show colored item in hands
+						if(isliving(user))
+							var/mob/living/L = user
+							L.update_inv_hands()
+							L.update_icons() // Force full icon update
 
 /datum/mind/proc/load_curses()
 	if(!key)

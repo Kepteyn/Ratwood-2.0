@@ -56,3 +56,5 @@
 #define RUNECHAT_BOLD(str) "+[str]+"
 /// Helper which creates a chat message which may have a tooltip in some contexts, but not others.
 #define conditional_tooltip(normal_text, tooltip_text, condition) ((condition) ? (span_tooltip(tooltip_text, normal_text)) : (normal_text))
+/// Creates a tooltip with HTML content (use with caution)
+#define SPAN_TOOLTIP_DANGEROUS_HTML(tooltip, text) ("<span class='tooltip' data-tooltip='[tooltip]'>[text]</span>")

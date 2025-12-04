@@ -125,6 +125,7 @@
 	associated_skill = /datum/skill/magic/holy
 
 /obj/effect/proc_holder/spell/invoked/rituos/proc/check_ritual_progress(mob/living/carbon/user)
+	var/list/excluded_bodyparts = list(/obj/item/bodypart/head, /obj/item/bodypart/chest)
 	var/rituos_complete = TRUE
 	for (var/obj/item/bodypart/our_limb in user.bodyparts)
 		if (our_limb.type in excluded_bodyparts)
@@ -135,6 +136,7 @@
 	return rituos_complete
 
 /obj/effect/proc_holder/spell/invoked/rituos/proc/get_skeletonized_bodyparts(mob/living/carbon/user)
+	var/list/excluded_bodyparts = list(/obj/item/bodypart/head, /obj/item/bodypart/chest)
 	var/skeletonized_parts = list()
 	for (var/obj/item/bodypart/our_limb in user.bodyparts)
 		if (our_limb.type in excluded_bodyparts)
@@ -145,6 +147,9 @@
 	return skeletonized_parts
 
 /obj/effect/proc_holder/spell/invoked/rituos/cast(list/targets, mob/living/carbon/user)
+	// Define excluded bodyparts (head and chest can't be skeletonized)
+	var/list/excluded_bodyparts = list(/obj/item/bodypart/head, /obj/item/bodypart/chest)
+	
 	//check to see if we're all skeletonized first
 	var/pre_rituos = check_ritual_progress(user)
 	if (pre_rituos)
@@ -154,6 +159,20 @@
 	if (user.mind?.has_rituos)
 		to_chat(user, span_warning("I have not the mental fortitude to enact the Lesser Work again. I must rest first..."))
 		return FALSE
+	
+	// Find a bodypart to skeletonize
+	var/list/available_parts = list()
+	for (var/obj/item/bodypart/our_limb in user.bodyparts)
+		if (our_limb.type in excluded_bodyparts)
+			continue
+		if (!our_limb.skeletonized)
+			available_parts += our_limb
+	
+	if (!length(available_parts))
+		to_chat(user, span_warning("I have no remaining limbs to offer to the ritual!"))
+		return FALSE
+	
+	var/obj/item/bodypart/part_to_bonify = pick(available_parts)
 
 	var/list/choices = list()
 	var/list/spell_choices = GLOB.learnable_spells

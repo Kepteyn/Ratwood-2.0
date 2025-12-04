@@ -41,3 +41,6 @@
 	icon_state = "circlet"
 	item_state = "circlet"
 	sellprice = 50
+
+/obj/item/clothing/head/roguetown/circlet/loadout
+	sellprice = 0

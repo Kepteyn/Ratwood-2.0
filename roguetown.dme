@@ -8,6 +8,7 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
+#include "_maps\roguetest.dm"
 #include "_maps\map_files\generic\CentCom.dmm"
 #include "_maps\templates\arcyne_fortress.dm"
 #include "_maps\templates\bog_shack_small.dm"
@@ -1449,6 +1450,8 @@
 #include "code\modules\client\darkmode.dm"
 #include "code\modules\client\familiar_prefs.dm"
 #include "code\modules\client\gods_rankings.dm"
+#include "code\modules\client\language_menu.dm"
+#include "code\modules\client\loadout_menu.dm"
 #include "code\modules\client\manual_donator.dm"
 #include "code\modules\client\message.dm"
 #include "code\modules\client\player_details.dm"
@@ -2902,6 +2905,7 @@
 #include "modular_azurepeak\virtues\crafter.dm"
 #include "modular_azurepeak\virtues\items.dm"
 #include "modular_azurepeak\virtues\movement.dm"
+#include "modular_azurepeak\virtues\packs.dm"
 #include "modular_azurepeak\virtues\size.dm"
 #include "modular_azurepeak\virtues\thief.dm"
 #include "modular_azurepeak\virtues\utility.dm"

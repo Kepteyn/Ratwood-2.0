@@ -1,6 +1,6 @@
 /datum/language/dwarvish
 	name = "Dwarvish"
-	desc = ""
+	desc = "The sturdy and guttural tongue of the dwarven clans, echoing through mountain halls and forges. A language of stone, metal, and enduring tradition."
 	speech_verb = "blabbers"
 	ask_verb = "asks"
 	exclaim_verb = "shouts"

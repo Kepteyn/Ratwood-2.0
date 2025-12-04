@@ -471,10 +471,81 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if (loadout_type3)
 		loadout3 = new loadout_type3()
 
+/datum/preferences/proc/_load_loadout4(S)
+	var/loadout_type4
+	S["loadout4"] >> loadout_type4
+	if (loadout_type4)
+		loadout4 = new loadout_type4()
+
+/datum/preferences/proc/_load_loadout5(S)
+	var/loadout_type5
+	S["loadout5"] >> loadout_type5
+	if (loadout_type5)
+		loadout5 = new loadout_type5()
+
+/datum/preferences/proc/_load_loadout6(S)
+	var/loadout_type6
+	S["loadout6"] >> loadout_type6
+	if (loadout_type6)
+		loadout6 = new loadout_type6()
+
+/datum/preferences/proc/_load_loadout7(S)
+	var/loadout_type7
+	S["loadout7"] >> loadout_type7
+	if (loadout_type7)
+		loadout7 = new loadout_type7()
+
+/datum/preferences/proc/_load_loadout8(S)
+	var/loadout_type8
+	S["loadout8"] >> loadout_type8
+	if (loadout_type8)
+		loadout8 = new loadout_type8()
+
+/datum/preferences/proc/_load_loadout9(S)
+	var/loadout_type9
+	S["loadout9"] >> loadout_type9
+	if (loadout_type9)
+		loadout9 = new loadout_type9()
+
+/datum/preferences/proc/_load_loadout10(S)
+	var/loadout_type10
+	S["loadout10"] >> loadout_type10
+	if (loadout_type10)
+		loadout10 = new loadout_type10()
+
 /datum/preferences/proc/_load_loadout_colours(S)
 	S["loadout_1_hex"] >> loadout_1_hex
 	S["loadout_2_hex"] >> loadout_2_hex
 	S["loadout_3_hex"] >> loadout_3_hex
+	S["loadout_4_hex"] >> loadout_4_hex
+	S["loadout_5_hex"] >> loadout_5_hex
+	S["loadout_6_hex"] >> loadout_6_hex
+	S["loadout_7_hex"] >> loadout_7_hex
+	S["loadout_8_hex"] >> loadout_8_hex
+	S["loadout_9_hex"] >> loadout_9_hex
+	S["loadout_10_hex"] >> loadout_10_hex
+	// Load custom names
+	S["loadout_1_name"] >> loadout_1_name
+	S["loadout_2_name"] >> loadout_2_name
+	S["loadout_3_name"] >> loadout_3_name
+	S["loadout_4_name"] >> loadout_4_name
+	S["loadout_5_name"] >> loadout_5_name
+	S["loadout_6_name"] >> loadout_6_name
+	S["loadout_7_name"] >> loadout_7_name
+	S["loadout_8_name"] >> loadout_8_name
+	S["loadout_9_name"] >> loadout_9_name
+	S["loadout_10_name"] >> loadout_10_name
+	// Load custom descriptions
+	S["loadout_1_desc"] >> loadout_1_desc
+	S["loadout_2_desc"] >> loadout_2_desc
+	S["loadout_3_desc"] >> loadout_3_desc
+	S["loadout_4_desc"] >> loadout_4_desc
+	S["loadout_5_desc"] >> loadout_5_desc
+	S["loadout_6_desc"] >> loadout_6_desc
+	S["loadout_7_desc"] >> loadout_7_desc
+	S["loadout_8_desc"] >> loadout_8_desc
+	S["loadout_9_desc"] >> loadout_9_desc
+	S["loadout_10_desc"] >> loadout_10_desc
 
 
 /datum/preferences/proc/_load_height(S)
@@ -515,6 +586,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["facial_hair_color"]	>> facial_hair_color
 	S["eye_color"]			>> eye_color
 	S["extra_language"]		>> extra_language
+	S["extra_language_1"]	>> extra_language_1
+	S["extra_language_2"]	>> extra_language_2
 	S["voice_color"]		>> voice_color
 	S["voice_pitch"]		>> voice_pitch
 	if (!voice_pitch)
@@ -586,6 +659,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	_load_loadout(S)
 	_load_loadout2(S)
 	_load_loadout3(S)
+	_load_loadout4(S)
+	_load_loadout5(S)
+	_load_loadout6(S)
+	_load_loadout7(S)
+	_load_loadout8(S)
+	_load_loadout9(S)
+	_load_loadout10(S)
 	_load_loadout_colours(S)
 
 	_load_combat_music(S)
@@ -762,6 +842,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["facial_hair_color"]	, facial_hair_color)
 	WRITE_FILE(S["eye_color"]			, eye_color)
 	WRITE_FILE(S["extra_language"]		, extra_language)
+	WRITE_FILE(S["extra_language_1"]	, extra_language_1)
+	WRITE_FILE(S["extra_language_2"]	, extra_language_2)
 	WRITE_FILE(S["voice_color"]			, voice_color)
 	WRITE_FILE(S["voice_pitch"]			, voice_pitch)
 	WRITE_FILE(S["skin_tone"]			, skin_tone)
@@ -854,11 +936,67 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		WRITE_FILE(S["loadout3"] , loadout3.type)
 	else
 		WRITE_FILE(S["loadout3"] , null)
-
+	if(loadout4)
+		WRITE_FILE(S["loadout4"] , loadout4.type)
+	else
+		WRITE_FILE(S["loadout4"] , null)
+	if(loadout5)
+		WRITE_FILE(S["loadout5"] , loadout5.type)
+	else
+		WRITE_FILE(S["loadout5"] , null)
+	if(loadout6)
+		WRITE_FILE(S["loadout6"] , loadout6.type)
+	else
+		WRITE_FILE(S["loadout6"] , null)
+	if(loadout7)
+		WRITE_FILE(S["loadout7"] , loadout7.type)
+	else
+		WRITE_FILE(S["loadout7"] , null)
+	if(loadout8)
+		WRITE_FILE(S["loadout8"] , loadout8.type)
+	else
+		WRITE_FILE(S["loadout8"] , null)
+	if(loadout9)
+		WRITE_FILE(S["loadout9"] , loadout9.type)
+	else
+		WRITE_FILE(S["loadout9"] , null)
+	if(loadout10)
+		WRITE_FILE(S["loadout10"] , loadout10.type)
+	else
+		WRITE_FILE(S["loadout10"] , null)
 
 	WRITE_FILE(S["loadout_1_hex"], loadout_1_hex)
 	WRITE_FILE(S["loadout_2_hex"], loadout_2_hex)
 	WRITE_FILE(S["loadout_3_hex"], loadout_3_hex)
+	WRITE_FILE(S["loadout_4_hex"], loadout_4_hex)
+	WRITE_FILE(S["loadout_5_hex"], loadout_5_hex)
+	WRITE_FILE(S["loadout_6_hex"], loadout_6_hex)
+	WRITE_FILE(S["loadout_7_hex"], loadout_7_hex)
+	WRITE_FILE(S["loadout_8_hex"], loadout_8_hex)
+	WRITE_FILE(S["loadout_9_hex"], loadout_9_hex)
+	WRITE_FILE(S["loadout_10_hex"], loadout_10_hex)
+	// Save custom names
+	WRITE_FILE(S["loadout_1_name"], loadout_1_name)
+	WRITE_FILE(S["loadout_2_name"], loadout_2_name)
+	WRITE_FILE(S["loadout_3_name"], loadout_3_name)
+	WRITE_FILE(S["loadout_4_name"], loadout_4_name)
+	WRITE_FILE(S["loadout_5_name"], loadout_5_name)
+	WRITE_FILE(S["loadout_6_name"], loadout_6_name)
+	WRITE_FILE(S["loadout_7_name"], loadout_7_name)
+	WRITE_FILE(S["loadout_8_name"], loadout_8_name)
+	WRITE_FILE(S["loadout_9_name"], loadout_9_name)
+	WRITE_FILE(S["loadout_10_name"], loadout_10_name)
+	// Save custom descriptions
+	WRITE_FILE(S["loadout_1_desc"], loadout_1_desc)
+	WRITE_FILE(S["loadout_2_desc"], loadout_2_desc)
+	WRITE_FILE(S["loadout_3_desc"], loadout_3_desc)
+	WRITE_FILE(S["loadout_4_desc"], loadout_4_desc)
+	WRITE_FILE(S["loadout_5_desc"], loadout_5_desc)
+	WRITE_FILE(S["loadout_6_desc"], loadout_6_desc)
+	WRITE_FILE(S["loadout_7_desc"], loadout_7_desc)
+	WRITE_FILE(S["loadout_8_desc"], loadout_8_desc)
+	WRITE_FILE(S["loadout_9_desc"], loadout_9_desc)
+	WRITE_FILE(S["loadout_10_desc"], loadout_10_desc)
 	//Familiar Files
 	WRITE_FILE(S["familiar_name"] , familiar_prefs.familiar_name)
 	WRITE_FILE(S["familiar_pronouns"] , familiar_prefs.familiar_pronouns)

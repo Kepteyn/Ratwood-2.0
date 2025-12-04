@@ -86,6 +86,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/skin_tone = "caucasian1"		//Skin color
 	var/eye_color = "000"				//Eye color
 	var/extra_language = "None" // Extra language
+	var/extra_language_1 = "None" // Additional triumph language slot 1
+	var/extra_language_2 = "None" // Additional triumph language slot 2
 	var/voice_color = "a0a0a0"
 	var/voice_pitch = 1
 	var/detail_color = "000"
@@ -201,10 +203,48 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/datum/loadout_item/loadout
 	var/datum/loadout_item/loadout2
 	var/datum/loadout_item/loadout3
+	var/datum/loadout_item/loadout4
+	var/datum/loadout_item/loadout5
+	var/datum/loadout_item/loadout6
+	var/datum/loadout_item/loadout7
+	var/datum/loadout_item/loadout8
+	var/datum/loadout_item/loadout9
+	var/datum/loadout_item/loadout10
 
 	var/loadout_1_hex
 	var/loadout_2_hex
 	var/loadout_3_hex
+	var/loadout_4_hex
+	var/loadout_5_hex
+	var/loadout_6_hex
+	var/loadout_7_hex
+	var/loadout_8_hex
+	var/loadout_9_hex
+	var/loadout_10_hex
+
+	// Custom names for loadout items
+	var/loadout_1_name
+	var/loadout_2_name
+	var/loadout_3_name
+	var/loadout_4_name
+	var/loadout_5_name
+	var/loadout_6_name
+	var/loadout_7_name
+	var/loadout_8_name
+	var/loadout_9_name
+	var/loadout_10_name
+
+	// Custom descriptions for loadout items
+	var/loadout_1_desc
+	var/loadout_2_desc
+	var/loadout_3_desc
+	var/loadout_4_desc
+	var/loadout_5_desc
+	var/loadout_6_desc
+	var/loadout_7_desc
+	var/loadout_8_desc
+	var/loadout_9_desc
+	var/loadout_10_desc
 
 	var/flavortext
 	var/flavortext_display
@@ -356,6 +396,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</td>"
 
 			dat += "<td style='width:33%;text-align:right'>"
+			dat += "<a href='?_src_=prefs;preference=loadout_menu'>Loadout Selection</a> | "
+			dat += "<a href='?_src_=prefs;preference=language_menu'>Languages</a>"
 			dat += "</td>"
 			dat += "</tr>"
 
@@ -571,21 +613,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat+= "<a href='?_src_=prefs;preference=clear_nsfw_gallery;task=input'>Clear Nsfw Gallery</a>"
 			dat += "<br><a href='?_src_=prefs;preference=ooc_preview;task=input'><b>Preview Examine</b></a>"
 
-			dat += "<br><b>Loadout Item I:</b> <a href='?_src_=prefs;preference=loadout_item;task=input'>[loadout ? loadout.name : "None"]</a>"
-			if (loadout_1_hex)
-				dat += "<a href='?_src_=prefs;preference=loadout1hex;task=input'> <span style='border: 1px solid #161616; background-color: [loadout_1_hex ? loadout_1_hex : "#FFFFFF"];'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>"
-			else
-				dat += "<a href='?_src_=prefs;preference=loadout1hex;task=input'>(C)</a>"
-			dat += "<br><b>Loadout Item II:</b> <a href='?_src_=prefs;preference=loadout_item2;task=input'>[loadout2 ? loadout2.name : "None"]</a>"
-			if (loadout_2_hex)
-				dat += "<a href='?_src_=prefs;preference=loadout2hex;task=input'> <span style='border: 1px solid #161616; background-color: [loadout_2_hex ? loadout_2_hex : "#FFFFFF"];'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>"
-			else
-				dat += "<a href='?_src_=prefs;preference=loadout2hex;task=input'>(C)</a>"
-			dat += "<br><b>Loadout Item III:</b> <a href='?_src_=prefs;preference=loadout_item3;task=input'>[loadout3 ? loadout3.name : "None"]</a>"
-			if (loadout_3_hex)
-				dat += "<a href='?_src_=prefs;preference=loadout3hex;task=input'><span style='border: 1px solid #161616; background-color: [loadout_3_hex ? loadout_3_hex : "#FFFFFF"];'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>"
-			else
-				dat += "<a href='?_src_=prefs;preference=loadout3hex;task=input'>(C)</a>"
 			dat += "</td>"
 
 			dat += "</tr></table>"
@@ -1410,6 +1437,14 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	else if(href_list["preference"] == "triumph_buy_menu")
 		SStriumphs.startup_triumphs_menu(user.client)
 
+	else if(href_list["preference"] == "loadout_menu")
+		open_loadout_menu(user)
+		return
+
+	else if(href_list["preference"] == "language_menu")
+		open_language_menu(user)
+		return
+
 	else if(href_list["preference"] == "keybinds")
 		switch(href_list["task"])
 			if("close")
@@ -2110,97 +2145,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("familiar_prefs")
 					familiar_prefs.fam_show_ui()
 
-				if("loadout_item")
-					var/list/loadouts_available = list("None")
-					for (var/path as anything in GLOB.loadout_items)
-						var/datum/loadout_item/loadout = GLOB.loadout_items[path]
-						var/donoritem = loadout.donoritem
-						if(donoritem && !loadout.donator_ckey_check(user.ckey))
-							continue
-						if (!loadout.name)
-							continue
-						loadouts_available[loadout.name] = loadout
-
-					var/loadout_input = tgui_input_list(user, "Choose your character's loadout item. RMB a tree, statue or clock to collect. I cannot stress this enough. YOU DON'T SPAWN WITH THESE. YOU HAVE TO MANUALLY PICK THEM UP!!", "LOADOUT THAT YOU GET FROM A TREE OR STATUE OR CLOCK", loadouts_available)
-					if(loadout_input)
-						if(loadout_input == "None")
-							loadout = null
-							to_chat(user, "Who needs stuff anyway?")
-						else
-							loadout = loadouts_available[loadout_input]
-							to_chat(user, "<font color='yellow'><b>[loadout.name]</b></font>")
-							if(loadout.desc)
-								to_chat(user, "[loadout.desc]")
-				if("loadout_item2")
-					var/list/loadouts_available = list("None")
-					for (var/path as anything in GLOB.loadout_items)
-						var/datum/loadout_item/loadout2 = GLOB.loadout_items[path]
-						var/donoritem = loadout2.donoritem
-						if(donoritem && !loadout2.donator_ckey_check(user.ckey))
-							continue
-						if (!loadout2.name)
-							continue
-						loadouts_available[loadout2.name] = loadout2
-
-					var/loadout_input2 = tgui_input_list(user, "Choose your character's loadout item. RMB a tree, statue or clock to collect. I cannot stress this enough. YOU DON'T SPAWN WITH THESE. YOU HAVE TO MANUALLY PICK THEM UP!!", "LOADOUT THAT YOU GET FROM A TREE OR STATUE OR CLOCK", loadouts_available)
-					if(loadout_input2)
-						if(loadout_input2 == "None")
-							loadout2 = null
-							to_chat(user, "Who needs stuff anyway?")
-						else
-							loadout2 = loadouts_available[loadout_input2]
-							to_chat(user, "<font color='yellow'><b>[loadout2.name]</b></font>")
-							if(loadout2.desc)
-								to_chat(user, "[loadout2.desc]")
-				if("loadout_item3")
-					var/list/loadouts_available = list("None")
-					for (var/path as anything in GLOB.loadout_items)
-						var/datum/loadout_item/loadout3 = GLOB.loadout_items[path]
-						var/donoritem = loadout3.donoritem
-						if(donoritem && !loadout3.donator_ckey_check(user.ckey))
-							continue
-						if (!loadout3.name)
-							continue
-						loadouts_available[loadout3.name] = loadout3
-
-					var/loadout_input3 = tgui_input_list(user, "Choose your character's loadout item. RMB a tree, statue or clock to collect. I cannot stress this enough. YOU DON'T SPAWN WITH THESE. YOU HAVE TO MANUALLY PICK THEM UP!!", "LOADOUT THAT YOU GET FROM A TREE OR STATUE OR CLOCK", loadouts_available)
-					if(loadout_input3)
-						if(loadout_input3 == "None")
-							loadout3 = null
-							to_chat(user, "Who needs stuff anyway?")
-						else
-							loadout3 = loadouts_available[loadout_input3]
-							to_chat(user, "<font color='yellow'><b>[loadout3.name]</b></font>")
-							if(loadout3.desc)
-								to_chat(user, "[loadout3.desc]")
-				if("loadout1hex")
-					var/choice = input(user, "Choose a color.", "Loadout Item One Colour") as null|anything in colorlist
-					if (choice && colorlist[choice])
-						loadout_1_hex = colorlist[choice]
-						if (loadout)
-							to_chat(user, "The colour for your [loadout::name] has been set to <b>[choice]</b>.")
-					else
-						loadout_1_hex = null
-						to_chat(user, "The colour for your <b>first</b> loadout item has been cleared.")
-				if("loadout2hex")
-					var/choice = input(user, "Choose a color.", "Loadout Item Two Colour") as null|anything in colorlist
-					if (choice && colorlist[choice])
-						loadout_2_hex = colorlist[choice]
-						if (loadout2)
-							to_chat(user, "The colour for your [loadout2::name] has been set to <b>[choice]</b>.")
-					else
-						loadout_2_hex = null
-						to_chat(user, "The colour for your <b>second</b> loadout item has been cleared.")
-				if("loadout3hex")
-					var/choice = input(user, "Choose a color.", "Loadout Item Three Colour") as null|anything in colorlist
-					if (choice && colorlist[choice])
-						loadout_3_hex = colorlist[choice]
-						if (loadout3)
-							to_chat(user, "The colour for your [loadout3::name] has been set to <b>[choice]</b>.")
-					else
-						loadout_3_hex = null
-						to_chat(user, "The colour for your <b>third</b> loadout item has been cleared.")
-
 				if("species")
 					var/list/species = list()
 					for(var/A in GLOB.roundstart_races)
@@ -2743,6 +2687,68 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 		return loadout_2_hex
 	if (loadout3 && (item_path == loadout3.path) && loadout_3_hex)
 		return loadout_3_hex
+	if (loadout4 && (item_path == loadout4.path) && loadout_4_hex)
+		return loadout_4_hex
+	if (loadout5 && (item_path == loadout5.path) && loadout_5_hex)
+		return loadout_5_hex
+	if (loadout6 && (item_path == loadout6.path) && loadout_6_hex)
+		return loadout_6_hex
+	if (loadout7 && (item_path == loadout7.path) && loadout_7_hex)
+		return loadout_7_hex
+	if (loadout8 && (item_path == loadout8.path) && loadout_8_hex)
+		return loadout_8_hex
+	if (loadout9 && (item_path == loadout9.path) && loadout_9_hex)
+		return loadout_9_hex
+	if (loadout10 && (item_path == loadout10.path) && loadout_10_hex)
+		return loadout_10_hex
+
+	return FALSE
+
+/datum/preferences/proc/resolve_loadout_to_name(item_path)
+	if (loadout && (item_path == loadout.path) && loadout_1_name)
+		return loadout_1_name
+	if (loadout2 && (item_path == loadout2.path) && loadout_2_name)
+		return loadout_2_name
+	if (loadout3 && (item_path == loadout3.path) && loadout_3_name)
+		return loadout_3_name
+	if (loadout4 && (item_path == loadout4.path) && loadout_4_name)
+		return loadout_4_name
+	if (loadout5 && (item_path == loadout5.path) && loadout_5_name)
+		return loadout_5_name
+	if (loadout6 && (item_path == loadout6.path) && loadout_6_name)
+		return loadout_6_name
+	if (loadout7 && (item_path == loadout7.path) && loadout_7_name)
+		return loadout_7_name
+	if (loadout8 && (item_path == loadout8.path) && loadout_8_name)
+		return loadout_8_name
+	if (loadout9 && (item_path == loadout9.path) && loadout_9_name)
+		return loadout_9_name
+	if (loadout10 && (item_path == loadout10.path) && loadout_10_name)
+		return loadout_10_name
+
+	return FALSE
+
+/datum/preferences/proc/resolve_loadout_to_desc(item_path)
+	if (loadout && (item_path == loadout.path) && loadout_1_desc)
+		return loadout_1_desc
+	if (loadout2 && (item_path == loadout2.path) && loadout_2_desc)
+		return loadout_2_desc
+	if (loadout3 && (item_path == loadout3.path) && loadout_3_desc)
+		return loadout_3_desc
+	if (loadout4 && (item_path == loadout4.path) && loadout_4_desc)
+		return loadout_4_desc
+	if (loadout5 && (item_path == loadout5.path) && loadout_5_desc)
+		return loadout_5_desc
+	if (loadout6 && (item_path == loadout6.path) && loadout_6_desc)
+		return loadout_6_desc
+	if (loadout7 && (item_path == loadout7.path) && loadout_7_desc)
+		return loadout_7_desc
+	if (loadout8 && (item_path == loadout8.path) && loadout_8_desc)
+		return loadout_8_desc
+	if (loadout9 && (item_path == loadout9.path) && loadout_9_desc)
+		return loadout_9_desc
+	if (loadout10 && (item_path == loadout10.path) && loadout_10_desc)
+		return loadout_10_desc
 
 	return FALSE
 
@@ -2813,6 +2819,10 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	character.eye_color = eye_color
 	if(extra_language && extra_language != "None")
 		character.grant_language(extra_language)
+	if(extra_language_1 && extra_language_1 != "None")
+		character.grant_language(extra_language_1)
+	if(extra_language_2 && extra_language_2 != "None")
+		character.grant_language(extra_language_2)
 	character.voice_color = voice_color
 	character.voice_pitch = voice_pitch
 	var/obj/item/organ/eyes/organ_eyes = character.getorgan(/obj/item/organ/eyes)
