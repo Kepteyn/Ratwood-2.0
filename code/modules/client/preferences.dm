@@ -402,8 +402,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "</td>"
 
 			dat += "<td style='width:33%;text-align:right'>"
-			dat += "<a href='?_src_=prefs;preference=loadout_menu'>Loadout Selection</a> | "
-			dat += "<a href='?_src_=prefs;preference=language_menu'>Languages</a>"
 			dat += "</td>"
 			dat += "</tr>"
 
@@ -463,8 +461,6 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			else
 				race_bonus = null
 
-			// LETHALSTONE EDIT BEGIN: add statpack selection
-			dat += "<b>Statpack:</b> <a href='?_src_=prefs;preference=statpack;task=input'>[statpack.name]</a><BR>"
 //			dat += "<a href='?_src_=prefs;preference=species;task=random'>Random Species</A> "
 //			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>Always Random Species: [(randomise[RANDOM_SPECIES]) ? "Yes" : "No"]</A><br>"
 
@@ -506,12 +502,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 					virtue = GLOB.virtues[/datum/virtue/none]
 				if(virtuetwo.type in pref_species.restricted_virtues)
 					virtuetwo = GLOB.virtues[/datum/virtue/none]
-			dat += "<b>Virtue:</b> <a href='?_src_=prefs;preference=virtue;task=input'>[virtue]</a><BR>"
-			if(statpack.name == "Virtuous")
-				dat += "<b>Second Virtue:</b> <a href='?_src_=prefs;preference=virtuetwo;task=input'>[virtuetwo]</a><BR>"
-			else
+			if(statpack.name != "Virtuous")
 				virtuetwo = GLOB.virtues[/datum/virtue/none]
-			dat += "<b>Vices:</b> <a href='?_src_=prefs;preference=vices_menu;task=input'>Configure Vices</a><BR>"
+			dat += "<b>Character Customization:</b> <a href='?_src_=prefs;preference=vices_menu;task=input'>Configure All</a><BR>"
 			var/datum/faith/selected_faith = GLOB.faithlist[selected_patron?.associated_faith]
 			dat += "<b>Faith:</b> <a href='?_src_=prefs;preference=faith;task=input'>[selected_faith?.name || "FUCK!"]</a><BR>"
 			dat += "<b>Patron:</b> <a href='?_src_=prefs;preference=patron;task=input'>[selected_patron?.name || "FUCK!"]</a><BR>"
@@ -1444,14 +1437,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	else if(href_list["preference"] == "triumph_buy_menu")
 		SStriumphs.startup_triumphs_menu(user.client)
 
-	else if(href_list["preference"] == "loadout_menu")
-		open_loadout_menu(user)
-		return
-
-	else if(href_list["preference"] == "language_menu")
-		open_language_menu(user)
-		return
-
 	else if(href_list["preference"] == "keybinds")
 		switch(href_list["task"])
 			if("close")
@@ -1673,30 +1658,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ResetJobs()
 						to_chat(user, "<font color='red'>Classes reset.</font>")
 
-				// LETHALSTONE EDIT: add statpack selection
-				if ("statpack")
-					var/list/statpacks_available = list()
-					for (var/path as anything in GLOB.statpacks)
-						var/datum/statpack/statpack = GLOB.statpacks[path]
-						if (!statpack.name)
-							continue
-						var/index = statpack.name
-						if(length(statpack.stat_array))
-							index += " \n[statpack.generate_modifier_string()]"
-						statpacks_available[index] = statpack
-
-					statpacks_available = sort_list(statpacks_available)
-
-					var/statpack_input = tgui_input_list(user, "How shall your strengths manifest?", "STATPACK", statpacks_available, statpack)
-					if (statpack_input)
-						var/datum/statpack/statpack_chosen = statpacks_available[statpack_input]
-						statpack = statpack_chosen
-						to_chat(user, "<font color='purple'>[statpack.name]</font>")
-						to_chat(user, "<font color='purple'>[statpack.description_string()]</font>")
-						/* also, unset our virtue if we're not a virtuous statpack.
-						if (!istype(statpack, /datum/statpack/wildcard/virtuous) && virtue.type != /datum/virtue/none)
-							virtue = new /datum/virtue/none
-							to_chat(user, span_info("Your virtue has been removed due to taking a stat-altering statpack.")) */
 				// LETHALSTONE EDIT: add pronouns
 				if ("pronouns")
 					var pronouns_input = tgui_input_list(user, "Choose your character's pronouns", "PRONOUNS", GLOB.pronouns_list)
@@ -2177,51 +2138,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				if("dnr")
 					dnr_pref = !dnr_pref
 
-				if("virtue")
-					var/list/virtue_choices = list()
-					for (var/path as anything in GLOB.virtues)
-						var/datum/virtue/V = GLOB.virtues[path]
-						if (!V.name)
-							continue
-						if ((V.name == virtue.name || V.name == virtuetwo.name) && !istype(V, /datum/virtue/none))
-							continue
-						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
-							continue
-						if(length(pref_species.restricted_virtues) && (V.type in pref_species.restricted_virtues))
-							continue
-						virtue_choices[V.name] = V
-					virtue_choices = sort_list(virtue_choices)
-					var/result = tgui_input_list(user, "What strength shall you wield?", "VIRTUES",virtue_choices)
-
-					if (result)
-						var/datum/virtue/virtue_chosen = virtue_choices[result]
-						virtue = virtue_chosen
-						to_chat(user, process_virtue_text(virtue_chosen))
-
-				if("virtuetwo")
-					var/list/virtue_choices = list()
-					for (var/path as anything in GLOB.virtues)
-						var/datum/virtue/V = GLOB.virtues[path]
-						if (!V.name)
-							continue
-						if ((V.name == virtue.name || V.name == virtuetwo.name) && !istype(V, /datum/virtue/none))
-							continue
-						if(length(pref_species.restricted_virtues) && (V.type in pref_species.restricted_virtues))
-							continue
-						if (istype(V, /datum/virtue/heretic) && !istype(selected_patron, /datum/patron/inhumen))
-							continue
-						virtue_choices[V.name] = V
-					virtue_choices = sort_list(virtue_choices)
-					var/result = tgui_input_list(user, "What strength shall you wield?", "VIRTUES",virtue_choices)
-
-					if (result)
-						var/datum/virtue/virtue_chosen = virtue_choices[result]
-						virtuetwo = virtue_chosen
-						to_chat(user, process_virtue_text(virtue_chosen))
-					/*	if (statpack.type != /datum/statpack/wildcard/virtuous)
-							statpack = new /datum/statpack/wildcard/virtuous
-							to_chat(user, span_purple("Your statpack has been set to virtuous (no stats) due to selecting a virtue.")) */
-
 				if("charflaw")
 					var/list/coom = GLOB.character_flaws.Copy()
 					var/result = tgui_input_list(user, "What burden will you bear?", "FLAWS",coom)
@@ -2234,6 +2150,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 				
 				if("vices_menu")
 					open_vices_menu(user)
+					return
 
 				if("race_bonus_select")
 					if(length(pref_species.custom_selection))

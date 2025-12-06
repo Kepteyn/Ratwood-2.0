@@ -2,7 +2,8 @@
 	if(!user || !user.client)
 		return
 	
-	user << browse(generate_loadout_html(user), "window=loadout_menu;size=1000x700")
+	// Redirect to unified character customization menu
+	open_vices_menu(user)
 
 /datum/preferences/proc/generate_loadout_html(mob/user)
 	var/total_triumphs = usr.get_triumphs()
@@ -264,108 +265,4 @@
 	
 	return html
 
-/datum/preferences/Topic(href, href_list)
-	. = ..()
-	
-	if(href_list["loadout_action"])
-		var/action = href_list["loadout_action"]
-		var/slot = text2num(href_list["slot"])
-		
-		if(!slot || slot < 1 || slot > 10)
-			return
-		
-		var/slot_var = slot == 1 ? "loadout" : "loadout[slot]"
-		
-		switch(action)
-			if("select", "change")
-				// Show item selection menu
-				var/list/loadouts_available = list("None")
-				
-				for(var/path as anything in GLOB.loadout_items)
-					var/datum/loadout_item/item = GLOB.loadout_items[path]
-					
-					// Check if donator item
-					if(item.donoritem && usr?.ckey)
-						if(!item.donator_ckey_check(usr.ckey))
-							continue
-					
-					// Show triumph cost in name
-					var/display_name = item.name
-					if(item.triumph_cost)
-						display_name = "[item.name] (-[item.triumph_cost] TRI)"
-					
-					loadouts_available[display_name] = item
-				
-				var/choice = tgui_input_list(usr, "Select an item for slot [slot]:", "Loadout Selection", loadouts_available)
-				
-				if(choice && choice != "None")
-					var/datum/loadout_item/selected = loadouts_available[choice]
-					
-					// Check triumph cost
-					if(selected.triumph_cost)
-						var/total_triumphs = usr.get_triumphs()
-						var/spent_triumphs = 0
-						
-						// Calculate current spent (excluding this slot if changing)
-						for(var/i = 1 to 10)
-							if(i == slot)
-								continue
-							var/datum/loadout_item/other_slot = vars[i == 1 ? "loadout" : "loadout[i]"]
-							if(other_slot && other_slot.triumph_cost)
-								spent_triumphs += other_slot.triumph_cost
-						
-						if(spent_triumphs + selected.triumph_cost > total_triumphs)
-							to_chat(usr, span_warning("You don't have enough triumphs! Need [selected.triumph_cost], but only have [total_triumphs - spent_triumphs] remaining."))
-							return
-					
-					vars[slot_var] = selected
-					to_chat(usr, span_notice("Selected [selected.name] for slot [slot]."))
-				else
-					vars[slot_var] = null
-				
-				save_preferences()
-				open_loadout_menu(usr)
-			
-			if("clear")
-				vars[slot_var] = null
-				vars["loadout_[slot]_name"] = null
-				vars["loadout_[slot]_desc"] = null
-				vars["loadout_[slot]_hex"] = null
-				save_preferences()
-				open_loadout_menu(usr)
-			
-			if("rename")
-				var/datum/loadout_item/current = vars[slot_var]
-				if(!current)
-					return
-				
-				var/new_name = tgui_input_text(usr, "Enter a custom name for this item (leave blank to use default):", "Rename Item", vars["loadout_[slot]_name"], MAX_NAME_LEN)
-				
-				if(new_name != null) // Allow empty string to clear
-					vars["loadout_[slot]_name"] = new_name
-					save_preferences()
-					open_loadout_menu(usr)
-			
-			if("describe")
-				var/datum/loadout_item/current = vars[slot_var]
-				if(!current)
-					return
-				
-				var/new_desc = tgui_input_text(usr, "Enter a custom description for this item (leave blank to use default):", "Describe Item", vars["loadout_[slot]_desc"], max_length = 500, multiline = TRUE)
-				
-				if(new_desc != null) // Allow empty string to clear
-					vars["loadout_[slot]_desc"] = new_desc
-					save_preferences()
-					open_loadout_menu(usr)
-			
-			if("color")
-				var/datum/loadout_item/current = vars[slot_var]
-				if(!current)
-					return
-				
-				var/new_color = input(usr, "Choose a color for this item:", "Item Color", vars["loadout_[slot]_hex"]) as color|null
-				
-				if(new_color)
-					vars["loadout_[slot]_hex"] = new_color
-					save_preferences()
-					open_loadout_menu(usr)
+// Old Topic handler removed - now handled in vices_menu.dm

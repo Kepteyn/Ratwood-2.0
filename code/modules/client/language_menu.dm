@@ -2,7 +2,8 @@
 	if(!user || !user.client)
 		return
 	
-	user << browse(generate_language_html(user), "window=language_menu;size=800x600")
+	// Redirect to unified character customization menu
+	open_vices_menu(user)
 
 /datum/preferences/proc/generate_language_html(mob/user)
 	var/total_triumphs = 0
@@ -245,124 +246,6 @@
 	
 	return html
 
-/datum/preferences/Topic(href, href_list)
-	. = ..()
-	
-	if(href_list["language_action"])
-		var/action = href_list["language_action"]
-		
-		// Handle free language
-		if(action == "free_select" || action == "free_change")
-			var/static/list/selectable_languages = list(
-				/datum/language/elvish,
-				/datum/language/dwarvish,
-				/datum/language/orcish,
-				/datum/language/hellspeak,
-				/datum/language/draconic,
-				/datum/language/celestial,
-				/datum/language/canilunzt,
-				/datum/language/grenzelhoftian,
-				/datum/language/kazengunese,
-				/datum/language/etruscan,
-				/datum/language/gronnic,
-				/datum/language/otavan,
-				/datum/language/aavnic,
-				/datum/language/merar,
-				/datum/language/thievescant/signlanguage
-			)
-			var/list/choices = list("None")
-			for(var/language in selectable_languages)
-				if(language in pref_species.languages)
-					continue
-				var/datum/language/a_language = new language()
-				choices[a_language.name] = language
-				qdel(a_language)
-			
-			var/chosen_language = input(usr, "Choose your character's extra language:", "EXTRA LANGUAGE") as null|anything in choices
-			if(chosen_language)
-				if(chosen_language == "None")
-					extra_language = "None"
-				else
-					extra_language = choices[chosen_language]
-				save_preferences()
-			open_language_menu(usr)
-			return
-		
-		// Handle triumph languages
-		var/slot = text2num(href_list["slot"])
-		
-		if(!slot || slot < 1 || slot > 2)
-			return
-		
-		var/slot_var = slot == 1 ? "extra_language_1" : "extra_language_2"
-		
-		switch(action)
-			if("select", "change")
-				// Show language selection menu
-				var/static/list/selectable_languages = list(
-					/datum/language/elvish,
-					/datum/language/dwarvish,
-					/datum/language/orcish,
-					/datum/language/hellspeak,
-					/datum/language/draconic,
-					/datum/language/celestial,
-					/datum/language/canilunzt,
-					/datum/language/grenzelhoftian,
-					/datum/language/kazengunese,
-					/datum/language/etruscan,
-					/datum/language/gronnic,
-					/datum/language/otavan,
-					/datum/language/aavnic,
-					/datum/language/merar,
-					/datum/language/thievescant/signlanguage
-				)
-				
-				var/list/choices = list("None")
-				for(var/language in selectable_languages)
-					if(language in pref_species.languages)
-						continue
-					
-					// Check if already selected in other slot
-					var/other_slot_var = slot == 1 ? "extra_language_2" : "extra_language_1"
-					if(vars[other_slot_var] == language)
-						continue
-					
-					var/datum/language/a_language = new language()
-					choices[a_language.name] = language
-					qdel(a_language)
-				
-				var/chosen_language = input(usr, "Choose a language (2 triumphs each):", "Language Selection") as null|anything in choices
-				
-				if(chosen_language)
-					if(chosen_language == "None")
-						vars[slot_var] = "None"
-					else
-						var/language_path = choices[chosen_language]
-						
-						// Check triumph cost
-						var/total_triumphs = 0
-						if(usr && usr.client)
-							total_triumphs = usr.get_triumphs() || 0
-						var/spent_triumphs = 0
-						
-						// Count current language purchases (excluding this slot)
-						var/other_slot_var = slot == 1 ? "extra_language_2" : "extra_language_1"
-						if(vars[other_slot_var] && vars[other_slot_var] != "None")
-							spent_triumphs += 2
-							
-						if(spent_triumphs + 2 > total_triumphs)
-							to_chat(usr, span_warning("You don't have enough triumphs! Need 2, but only have [total_triumphs - spent_triumphs] remaining."))
-							return
-							
-						vars[slot_var] = language_path
-						to_chat(usr, span_notice("Selected [chosen_language] for language slot [slot]."))
-					
-					save_preferences()
-				
-				open_language_menu(usr)
-			if("clear")
-				vars[slot_var] = "None"
-				save_preferences()
-				open_language_menu(usr)
-		
-		return
+// Old Topic handler - now handled in vices_menu.dm
+
+// Old Topic handler removed - now handled in vices_menu.dm
