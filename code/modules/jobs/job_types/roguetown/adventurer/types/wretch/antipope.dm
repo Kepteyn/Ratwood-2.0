@@ -13,13 +13,11 @@
 	category_tags = list(CTAG_WRETCH)
 //Resonance to harm their undead will be funny. Trust. Seer to see other Inhumen.
 	traits_applied = list(TRAIT_HERETIC_SEER, TRAIT_RITUALIST, TRAIT_GRAVEROBBER, TRAIT_RESONANCE, TRAIT_ARCYNE_T2, TRAIT_OVERTHERETIC)
-//Inverse of Priest.
+//Inverse of Priest. Kind of? STR instead of INT. CON/SPD instead of WIL.
 	subclass_stats = list(
-		STATKEY_STR = 1,
-		STATKEY_CON = 1,
-		STATKEY_SPD = 1,
-		STATKEY_INT = -4,
-		STATKEY_WIL = -2,
+		STATKEY_STR = 4,//No armour skill. No DE/CR. Gains for Graggar.
+		STATKEY_CON = 2,
+		STATKEY_SPD = 2,
 	)
 	maximum_possible_slots = 1//There can only be one antipope.
 	subclass_spellpoints = 3//TRUST THE PROCESS. 6 with the virtue.
