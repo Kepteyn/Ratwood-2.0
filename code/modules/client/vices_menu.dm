@@ -46,16 +46,6 @@
 		if(show_message && user)
 			to_chat(user, span_warning("Bronze Arm (L) virtue conflicts with Bronze Arm (R) virtue - you can't have both bronze arms!"))
 		return TRUE
-	// Giant vs Heightshifting: mutually exclusive
-	if(virtue_type == /datum/virtue/size/giant && other_virtue_type == /datum/virtue/size/heightshifting)
-		if(show_message && user)
-			to_chat(user, span_warning("Giant conflicts with Heightshifting - choose only one size-related virtue!"))
-		return TRUE
-	if(virtue_type == /datum/virtue/size/heightshifting && other_virtue_type == /datum/virtue/size/giant)
-		if(show_message && user)
-			to_chat(user, span_warning("Heightshifting conflicts with Giant - choose only one size-related virtue!"))
-		return TRUE
-	return FALSE
 
 /datum/preferences/proc/check_vice_virtue_conflict(vice_type, show_message = FALSE, mob/user = null)
 	// Check if selected vice conflicts with any selected virtue
