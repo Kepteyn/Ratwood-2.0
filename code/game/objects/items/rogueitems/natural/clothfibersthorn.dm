@@ -301,7 +301,7 @@
 		if(do_after(user, 3 SECONDS, target = src))
 			C.reagents.remove_reagent(/datum/reagent/consumable/ethanol/aqua_vitae, 10)
 			medicine_quality = 0.5 //slower than health potions, more healing overall. Good for fractures or other big wounds.
-			medicine_amount += 30
+			medicine_amount += 60
 			desc += " It has been soaked in aqua vitae."
 			detail_color = "#6e6e6e"
 			update_icon()
