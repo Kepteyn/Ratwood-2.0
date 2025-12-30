@@ -273,6 +273,9 @@
 	. = ..()
 	wet = 10
 	bandage_health = initial(bandage_health)
+	medicine_amount = 0
+	medicine_quality = 0
+	update_icon()
 
 /obj/item/natural/cloth/attackby(obj/item/I, mob/living/user, params)
 	var/obj/item/reagent_containers/C = I
@@ -318,7 +321,7 @@
 
 /obj/item/natural/cloth/update_icon()
 	cut_overlays()
-	if(medicine_amount)
+	if(medicine_amount > 0)
 		var/mutable_appearance/pic = mutable_appearance(icon(icon, "[icon_state][detail_tag]"))
 		pic.appearance_flags = RESET_COLOR
 		if(get_detail_color())

@@ -568,7 +568,7 @@
 		else
 			cloth.medicine_amount = 0
 			cloth.medicine_quality = 0
-			cloth.color = initial(cloth.color)
+			cloth.detail_color = null
 			cloth.desc = initial(cloth.desc)
 			cloth.update_icon()
 	if(!bleed_rate)
