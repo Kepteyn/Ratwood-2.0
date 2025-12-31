@@ -750,8 +750,8 @@
 		to_chat(user, span_suppradio("The standard's runes pulse, accepting me as its <b>master</b>."))
 		user.change_stat(STATKEY_LCK, 3)
 		user.add_stress(/datum/stressevent/keep_standard)
-		ADD_TRAIT(user, TRAIT_HARDDISMEMBER, CULT_TRAIT)//KEEP AT IT!!
-		ADD_TRAIT(user, TRAIT_IGNOREDAMAGESLOWDOWN, CULT_TRAIT)//AND KEEP UP!!!
+		ADD_TRAIT(user, TRAIT_HARDDISMEMBER, TRAIT_GENERIC)//KEEP AT IT!!
+		ADD_TRAIT(user, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)//AND KEEP UP!!!
 		if(HAS_TRAIT(user, TRAIT_STANDARD_BEARER))
 			to_chat(user, span_suppradio("<small>It remains ready for your word. You need only ask.</small>"))
 			user.verbs |= /mob/proc/standard_position
@@ -768,8 +768,8 @@
 		to_chat(user, span_monkeyhive("The standard's runes pulse, rhythmically, as if sad to see you release your control."))
 		user.change_stat(STATKEY_LCK, -3)
 		user.remove_stress(/datum/stressevent/keep_standard)
-		REMOVE_TRAIT(user, TRAIT_HARDDISMEMBER, CULT_TRAIT)
-		REMOVE_TRAIT(user, TRAIT_IGNOREDAMAGESLOWDOWN, CULT_TRAIT)
+		REMOVE_TRAIT(user, TRAIT_HARDDISMEMBER, TRAIT_GENERIC)
+		REMOVE_TRAIT(user, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_GENERIC)
 		if(HAS_TRAIT(user, TRAIT_STANDARD_BEARER))
 			to_chat(user, span_monkeyhive("<small>You feel ill. Was that a mistake?</small>"))
 			user.verbs -= /mob/proc/standard_position
