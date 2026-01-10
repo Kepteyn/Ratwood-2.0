@@ -58,7 +58,8 @@ Balloon Alert / Floating Text defines
 	/datum/species/goblinp,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
-	/datum/species/dwarf/gnome\
+	/datum/species/dwarf/gnome,\
+	/datum/species/harpy\
 )
 
 #define RACES_RESPECTED \
@@ -80,6 +81,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/akula,\
 	/datum/species/anthromorph,\
 	/datum/species/demihuman,\
+	/datum/species/harpy,\
 	/datum/species/lamia,\
 	/datum/species/anthromorphsmall,\
 	/datum/species/kobold,\
@@ -89,6 +91,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/dullahan,\
 	/datum/species/halforc,\
 	/datum/species/goblinp,\
+	/datum/species/harpy,\
 
 #define RACES_DESPISED \
 	/datum/species/dullahan,\
@@ -127,6 +130,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/lamia,\
+	/datum/species/harpy,\
 )
 
 #define CLOTHED_RACES_TYPES list(\
@@ -147,6 +151,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/anthromorph,\
 	/datum/species/anthromorphsmall,\
 	/datum/species/demihuman,\
+	/datum/species/harpy,\
 	/datum/species/halforc,\
 	/datum/species/orc,\
 	/datum/species/kobold,\
@@ -174,6 +179,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/anthromorph,\
 	/datum/species/demihuman,\
 	/datum/species/halforc,\
+	/datum/species/harpy,\
 	/datum/species/construct/metal,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
@@ -193,6 +199,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/anthromorph,\
 	/datum/species/demihuman,\
 	/datum/species/construct/metal,\
+	/datum/species/harpy,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
 )
