@@ -21,9 +21,9 @@
 // Bronze Golem Pack: Both Bronze Arms
 // For those who have replaced both arms with mechanical prosthetics
 /datum/virtue/pack/bronzegolem
-	name = "Bronze Golem (-6 TRI)"
+	name = "Bronze Golem (-3 TRI)"
 	desc = "Through wealth, misfortune, or perhaps experimentation, both of my arms have been replaced with bronze prosthetics. I am part man, part machine - a walking testament to artifice."
-	triumph_cost = 6
+	triumph_cost = 3
 	granted_virtues = list(
 		/datum/virtue/utility/bronzearm_r,
 		/datum/virtue/utility/bronzearm_l
@@ -36,9 +36,9 @@
 // Enchanting Performer Pack: Socialite + Performer + Second Voice
 // For entertainers, bards, and charismatic performers
 /datum/virtue/pack/enchanter
-	name = "Enchanting Performer (-6 TRI)"
+	name = "Enchanting Performer (-12 TRI)"
 	desc = "I am a master of the stage and salon alike - beautiful, talented, and able to become anyone through voice and charm. My performances captivate audiences, and my social graces open every door."
-	triumph_cost = 6
+	triumph_cost = 12
 	granted_virtues = list(
 		/datum/virtue/utility/socialite,
 		/datum/virtue/utility/performer,
@@ -52,9 +52,9 @@
 // Traveling Scholar Pack: Linguist + Rich and Shrewd + Equestrian
 // For worldly scholars who have traveled extensively and accumulated wealth and knowledge
 /datum/virtue/pack/travelingscholar
-	name = "Traveling Scholar (-6 TRI)"
+	name = "Traveling Scholar (-15 TRI)"
 	desc = "My travels across distant lands have made me wealthy in both coin and wisdom. I speak many tongues, understand the value of all things, and ride with practiced ease. The world is my library, and every road teaches me something new."
-	triumph_cost = 6
+	triumph_cost = 15
 	granted_virtues = list(
 		/datum/virtue/utility/linguist,
 		/datum/virtue/items/rich,
@@ -67,9 +67,9 @@
 
 // Scrappy Survivor Pack: Cunning Provisioner + Forester + Feral Appetite
 /datum/virtue/pack/scrappysurvivor
-	name = "Scrappy Survivor (-6 TRI)"
+	name = "Scrappy Survivor (-10 TRI)"
 	desc = "I've lived through hard times - poverty, famine, or exile taught me to make do with what I have. I can fish, farm, forage, and most importantly, I can stomach anything. Spoiled rations? Raw meat? Doesn't matter - I'll eat it and keep going."
-	triumph_cost = 6
+	triumph_cost = 10
 	granted_virtues = list(
 		/datum/virtue/utility/forester,
 		/datum/virtue/utility/feral_appetite
@@ -80,9 +80,9 @@
 
 // High Society Pack: Nobility + Socialite
 /datum/virtue/pack/highsociety
-	name = "High Society (-6 TRI)"
+	name = "High Society (-12 TRI)"
 	desc = "I was born into privilege and raised in the finest circles. Noble blood runs through my veins, I read the emotions of others with ease, and my charm opens every door. Wealth, beauty, and status are my birthright."
-	triumph_cost = 6
+	triumph_cost = 12
 	granted_virtues = list(
 		/datum/virtue/utility/noble,
 		/datum/virtue/utility/socialite
@@ -93,9 +93,9 @@
 
 // Trusted Housekeeper Pack: Resident + Cunning Provisioner
 /datum/virtue/pack/housekeeper
-	name = "Trusted Housekeeper (-6 TRI)"
+	name = "Trusted Housekeeper (-9 TRI)"
 	desc = "I've served the households of this city for years - cooking, cleaning, and managing provisions. I know every street, have a home here, and my skills in the kitchen are unmatched. The city trusts me, and I know how to make do."
-	triumph_cost = 6
+	triumph_cost = 9
 	granted_virtues = list(
 		/datum/virtue/utility/resident,
 		/datum/virtue/utility/granary
@@ -106,9 +106,9 @@
 
 // Broken Soul Pack: Ugly + Tolerant + Deadened
 /datum/virtue/pack/brokensoul
-	name = "Broken Soul (-6 TRI)"
+	name = "Broken Soul (-3 TRI)"
 	desc = "Life has been cruel to me. My appearance drives others away, I've learned to endure what most cannot, and I've felt nothing for so long I can barely remember what emotions were like. I am a walking testament to survival through suffering."
-	triumph_cost = 6
+	triumph_cost = 3
 	granted_virtues = list(
 		/datum/virtue/utility/ugly,
 		/datum/virtue/utility/tolerant,
