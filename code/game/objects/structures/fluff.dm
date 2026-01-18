@@ -802,7 +802,17 @@
 		if(!user.is_literate())
 			to_chat(user, span_warning("I do not know how to write."))
 			return
+		var/can_write = FALSE
 		if((user.used_intent.blade_class == BCLASS_STAB) && (W.wlength == WLENGTH_SHORT))
+			can_write = TRUE
+		if(istype(W, /obj/item/natural/thorn))
+			can_write = TRUE
+		if(istype(W, /obj/item/natural/feather))
+			can_write = TRUE
+		if(istype(W, /obj/item/rogueore/coal))
+			can_write = TRUE
+		
+		if(can_write)
 			if(wrotesign)
 				to_chat(user, span_warning("Something is already carved here."))
 				return
