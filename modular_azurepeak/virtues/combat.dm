@@ -179,3 +179,26 @@
 /datum/virtue/combat/combat_aware/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.change_stat(STATKEY_PER, 1)
 	recipient.verbs += /mob/living/carbon/human/proc/togglecombatawareness
+
+/datum/virtue/combat/tough_hide
+	name = "Natural Armor"
+	desc = "Whether by natural means or other means, my skin is strong enough to resist being pierced and cut."
+	custom_text = "This will replace your SHIRT slot with a regenerating, unremoveable armor."
+
+/datum/virtue/combat/tough_hide/apply_to_human(mob/living/carbon/human/recipient)
+	. = ..()
+	if(!recipient)
+		return
+
+	// Remove whatever shirt they spawned with
+	var/obj/item/clothing/shirt = recipient.wear_shirt
+	if(shirt)
+		qdel(shirt)
+
+	// Equip the skin armor
+	recipient.equip_to_slot_or_del(
+		new /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple/weak(recipient),
+		SLOT_SHIRT,
+		TRUE
+	)
+
