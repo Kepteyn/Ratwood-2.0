@@ -502,7 +502,10 @@
 					GLOB.head_bounties -= removing_bounty
 		log_admin("[key_name(usr)] has sent [key_name(M)] back to the Lobby.")
 		GLOB.chosen_names -= M.real_name
-		LAZYREMOVE(GLOB.actors_list[SSjob.bitflag_to_department(mob_job.department_flag, mob_job.obsfuscated_job)], M.mobid)
+		if(!mob_job)
+			LAZYREMOVE(GLOB.actors_list[SSjob.bitflag_to_department(WANDERER, FALSE)], M.mobid)
+		else
+			LAZYREMOVE(GLOB.actors_list[SSjob.bitflag_to_department(mob_job.department_flag, mob_job.obsfuscated_job)], M.mobid)
 		LAZYREMOVE(GLOB.roleplay_ads, M.mobid)
 		SSdroning.kill_droning(M.client)
 		SSdroning.kill_loop(M.client)
