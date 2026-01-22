@@ -130,11 +130,16 @@
 		AM.forceMove(newtarg)
 		return
 	var/mob/living/L = AM
+	var/prev_z_level = L.z
+	var/new_z_level = newtarg.z
+	var/stamina_cost = (L.mobility_flags & MOBILITY_STAND) ? 10 : 30 // 1/3rd the cost of climbing up a wall.
 	var/atom/movable/pulling = L.pulling
 	var/was_pulled_buckled = FALSE
 	if(pulling)
 		if(pulling in L.buckled_mobs)
 			was_pulled_buckled = TRUE
+	if((prev_z_level < new_z_level) && !was_pulled_buckled) // Going UP a Z-level (and no being pulled)
+		L.stamina_add(stamina_cost)
 	L.forceMove(newtarg)
 	if(pulling)
 		L.stop_pulling()
